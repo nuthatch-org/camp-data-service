@@ -26,10 +26,10 @@ aggregator_url = "http://localhost:8080"
 aggregation_interval_secs = 60
 
 [backend]
-# URL of the camp REST API this gateway proxies to.
+# URL of the camp REST API this gateway proxies to (horizon-core: backend.upstream_url).
 # Locally: http://localhost:3000
 # Or point directly at the nginx/ampd tunnel on the ThinkPad.
-camp_url = "http://localhost:3000"
+upstream_url = "http://localhost:3000"
 
 [database]
 url = "postgres://camp:camp@localhost:5432/camp_gateway"
