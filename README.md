@@ -2,7 +2,7 @@
 
 > **DISCLAIMER:** This is an experimental community project. It is not affiliated with or endorsed by The Graph Foundation or Edge & Node. It has not been audited. Deploy on testnet only until further notice.
 
-A Horizon data service that turns a self-hosted [camp](https://github.com/nightswatchhq/camp) instance — backed by an Amp node — into a paid provider on The Graph Protocol's Horizon payment network. Consumers deposit GRT into `PaymentsEscrow`, each query carries a signed TAP (GraphTally) receipt, and the provider collects GRT hourly via an on-chain `collect()` call.
+A Horizon data service that turns a self-hosted [camp](https://github.com/nuthatch-org/camp) instance — backed by an Amp node — into a paid provider on The Graph Protocol's Horizon payment network. Consumers deposit GRT into `PaymentsEscrow`, each query carries a signed TAP (GraphTally) receipt, and the provider collects GRT hourly via an on-chain `collect()` call.
 
 In one sentence: **the ThinkPad running ampd becomes an indexer on Horizon, and anyone who wants decoded Arbitrum One data pays in GRT to query it.**
 
@@ -10,7 +10,7 @@ In one sentence: **the ThinkPad running ampd becomes an indexer on Horizon, and 
 
 ## What is camp?
 
-[camp](https://github.com/nightswatchhq/camp) is a free REST API for decoded Arbitrum One blockchain data backed by a self-hosted [Amp](https://github.com/amphitheatre-app/amp) node. It offers endpoints for ERC-20 transfers, decoded protocol events, gas analytics, whale feeds, and raw SQL — all updated at chain tip, no signup required.
+[camp](https://github.com/nuthatch-org/camp) is a free REST API for decoded Arbitrum One blockchain data backed by a self-hosted [Amp](https://github.com/amphitheatre-app/amp) node. It offers endpoints for ERC-20 transfers, decoded protocol events, gas analytics, whale feeds, and raw SQL — all updated at chain tip, no signup required.
 
 camp-data-service adds a payment layer on top: instead of free queries, consumers pay per request in GRT via The Graph's Horizon micropayment system.
 
@@ -26,7 +26,7 @@ Consumer (dApp / script)
 camp-gateway                         (this repo — Rust/Axum)
    │  validates receipt, persists, proxies
    ▼
-camp REST API                        (Next.js — github.com/nightswatchhq/camp)
+camp REST API                        (Next.js — github.com/nuthatch-org/camp)
    │  translates REST → SQL
    ▼
 nginx :1604 + ampd :1603             (ThinkPad — Amp node on Arbitrum One)
@@ -127,7 +127,7 @@ Providers register for specific tiers (`BASIC=0`, `DECODED=1`, `SQL=2`). A provi
 - Rust stable
 - PostgreSQL 15+
 - Foundry (for contract work)
-- A running [camp](https://github.com/nightswatchhq/camp) instance
+- A running [camp](https://github.com/nuthatch-org/camp) instance
 
 ### Build
 
@@ -323,9 +323,9 @@ cargo test
 
 ## Related
 
-- [camp](https://github.com/nightswatchhq/camp) — the free REST API this service monetises
-- [dispatch-service](https://github.com/nightswatchhq/dispatch-service) — JSON-RPC data service on Horizon (the template this project follows)
-- [seahorn](https://github.com/nightswatchhq/seahorn) — Solana data service on Horizon
+- [camp](https://github.com/nuthatch-org/camp) — the free REST API this service monetises
+- [dispatch-service](https://github.com/nuthatch-org/dispatch-service) — JSON-RPC data service on Horizon (the template this project follows)
+- [seahorn](https://github.com/nuthatch-org/seahorn) — Solana data service on Horizon
 - [GRC-005: Dispatch](https://forum.thegraph.com/t/grc-005-dispatch-an-experimental-json-rpc-data-service-on-horizon) — the RFC that inspired this work
 
 ---
